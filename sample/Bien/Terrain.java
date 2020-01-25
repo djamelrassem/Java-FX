@@ -154,26 +154,26 @@ public class Terrain extends NonHabitable {
         if (this.transaction == Transaction.Location) {
             if (this.superficie < 60) {
                 if (this.wilaya.getPrixMetreCarre() < 50000) {
-                    price = price + price * 0.01;
+                    price = price + this.prix * 0.01;
 
                 } else {
-                    price = price + price * 0.015;
+                    price = price +this.prix * 0.015;
 
                 }
             } else if (this.superficie >= 60 && this.superficie <= 150) {
                 if (this.wilaya.getPrixMetreCarre() < 50000) {
-                    price = price + price * 0.02;
+                    price = price + this.prix * 0.02;
 
                 } else {
-                    price = price + price * 0.025;
+                    price = price + this.prix * 0.025;
 
                 }
             } else {
                 if (this.wilaya.getPrixMetreCarre() < 50000) {
-                    price = price + price * 0.03;
+                    price = price +this.prix * 0.03;
 
                 } else {
-                    price = price + price * 0.035;
+                    price = price + this.prix * 0.035;
 
                 }
             }
@@ -181,34 +181,34 @@ public class Terrain extends NonHabitable {
         } else {
             if (this.prix < 5000000) {
                 if (this.wilaya.getPrixMetreCarre() < 50000) {
-                    price = price + (price * 0.03);
+                    price = price + (this.prix * 0.03);
                 } else {
-                    price = price + (price * 0.035);
+                    price = price + (this.prix * 0.035);
                 }
                 if (this.nbrFacades > 1) {
-                    price = price + (price * 0.005) * this.nbrFacades;
+                    price = price + (this.prix * 0.005) * this.nbrFacades;
                 }
             }
 
             if ((price >= 5000000) && (price < 15000000)) {
                 if (this.wilaya.getPrixMetreCarre() < 50000) {
-                    price = price + (price * 0.02);
+                    price = price + (this.prix * 0.02);
                 } else {
-                    price = price + (price * 0.025);
+                    price = price + (this.prix * 0.025);
                 }
                 if (this.nbrFacades > 1) {
-                    price = price + (price * 0.005) * this.nbrFacades;
+                    price = price + (this.prix * 0.005) * this.nbrFacades;
                 }
 
             }
             if (price > 15000000) {
                 if (this.wilaya.getPrixMetreCarre() < 50000) {
-                    price = price + (price * 0.01);
+                    price = price + (this.prix * 0.01);
                 } else {
-                    price = price + (price * 0.02);
+                    price = price + (this.prix * 0.02);
                 }
                 if (this.nbrFacades > 1) {
-                    price = price + (price * 0.005) * this.nbrFacades;
+                    price = price + (this.prix * 0.005) * this.nbrFacades;
                 }
 
             }
