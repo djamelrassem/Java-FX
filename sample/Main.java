@@ -119,7 +119,7 @@ public class Main extends Application{
         leftMenu.setScene2(stage,homePage,body,mainLayer,agence,scroller,searchPage);
         leftMenu.setScene3(stage, homePage, body, mainLayer, scroller);
 
-        homePage.getStylesheets().add("file:///C:/Users/pc/IdeaProjects/javafx/src/sample/Graphics/style.css");
+        homePage.getStylesheets().add("sample/Graphics/style.css");
         stage.setScene(homePage);
         stage.show();
     }
