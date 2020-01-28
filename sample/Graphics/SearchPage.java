@@ -17,7 +17,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class SearchPage extends VBox {
-    public SearchPage(Agence agence, Scrolling scroller, Stage stage) {
+    public SearchPage(Agence agence, Scrolling scroller, Stage stage , HBox body , VBox mainLayer) {
 
         BorderPane bp = new BorderPane();
         bp.setPadding(new Insets(25,100,200,100));
@@ -52,8 +52,13 @@ public class SearchPage extends VBox {
             agence.recherche( wilayas , choice.getValue() , Double.parseDouble(txtprixmin.getText()) ,Double.parseDouble(txtprimax.getText())
                     , Double.parseDouble(txtsupmin.getText()), Double.parseDouble(txtsupmax.getText()) );
             scroller.refresh();
+            body.getChildren().remove(1);
+            body.getChildren().add(scroller);
+            mainLayer.getChildren().remove(body);
+            mainLayer.getChildren().add(body);
             stage.setScene(Main.homePage);
             stage.show();
+
         });
         gridPane.add(lblprmin, 0, 5);
         gridPane.add(txtprixmin, 1, 5);

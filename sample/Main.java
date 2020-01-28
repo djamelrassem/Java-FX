@@ -109,14 +109,14 @@ public class Main extends Application{
             ///menu on the left
             SideBarMenu leftMenu = new SideBarMenu(stage );
         body.getChildren().addAll(leftMenu,scroller);
-        SearchPage searchPage = new SearchPage(agence,scroller, stage);
+        SearchPage searchPage = new SearchPage(agence,scroller, stage,body,mainLayer);
         mainLayer.getChildren().addAll(topBar , body );
         homePage = new Scene(mainLayer , 720*1.6 ,720 );
         LogIn loginPage = new LogIn(agence , stage, homePage,scroller, leftMenu,body,mainLayer);
         logIn = new Scene(loginPage,720*1.6,720);
         search=new Scene(searchPage, 200,200);
         leftMenu.setScene1(stage,logIn);
-        leftMenu.setScene2(stage,homePage,body,mainLayer,agence,scroller);
+        leftMenu.setScene2(stage,homePage,body,mainLayer,agence,scroller,searchPage);
         leftMenu.setScene3(stage, homePage, body, mainLayer, scroller);
 
         homePage.getStylesheets().add("file:///C:/Users/pc/IdeaProjects/javafx/src/sample/Graphics/style.css");

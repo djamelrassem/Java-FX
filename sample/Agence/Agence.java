@@ -11,6 +11,10 @@ public class Agence {
     private String adminPassword;
     private boolean modify = false;
     private List<Bien> bienss;
+    private List<Bien> bienss1;
+    private List<Bien> bienss2;
+    private List<Bien> bienss3;
+
     private List<Bien> bienAffiche;
     private List<String> listemessage;
 
@@ -27,6 +31,9 @@ public class Agence {
         this.adminUsername = "admin";
         users = new ArrayList<Proprietaire>();
         bienss = new ArrayList<Bien>();
+        bienss1 = new ArrayList<Bien>();
+        bienss2 = new ArrayList<Bien>();
+        bienss3 = new ArrayList<Bien>();
         bienAffiche = new ArrayList<Bien>();
         this.listemessage = new ArrayList<String>();
     }
@@ -59,18 +66,18 @@ public class Agence {
 
     public boolean ajouterBien(Proprietaire user, Bien bien) {
         boolean found = false;
-                for (Bien bien_ : bienss) {
-                    if (bien_.compareTo(bien) == 1) {
-                        found = true;
-                    }
-                }
-                if (!found) {
-                    this.bienss.add(bien);
-                    user.ajouterBien(bien);
-                    this.bienAffiche.add(bien);
-                    bien.setInsere(true);
-                }
-                return !found;
+        for (Bien bien_ : bienss) {
+            if (bien_.compareTo(bien) == 1) {
+                found = true;
+            }
+        }
+        if (!found) {
+            this.bienss.add(bien);
+            user.ajouterBien(bien);
+            this.bienAffiche.add(bien);
+            bien.setInsere(true);
+        }
+        return !found;
     }
 
     public void archiver(int n) {
@@ -113,16 +120,16 @@ public class Agence {
                         if (((bienss.get(c).getDate().substring(3, 5)
                                 .compareTo(bienss.get(d).getDate().substring(3, 5))) < 0)
                                 && ((bienss.get(c).getDate().substring(6, 9)
-                                        .compareTo(bienss.get(d).getDate().substring(6, 9))) == 0)) {
+                                .compareTo(bienss.get(d).getDate().substring(6, 9))) == 0)) {
                             Collections.swap(bienss, c, d);
                         }
 
                         if (((bienss.get(c).getDate().substring(0, 2)
                                 .compareTo(bienss.get(d).getDate().substring(0, 2))) < 0)
                                 && ((bienss.get(c).getDate().substring(3, 5)
-                                        .compareTo(bienss.get(d).getDate().substring(3, 5))) == 0)
+                                .compareTo(bienss.get(d).getDate().substring(3, 5))) == 0)
                                 && ((bienss.get(c).getDate().substring(6, 9)
-                                        .compareTo(bienss.get(d).getDate().substring(6, 9))) == 0)) {
+                                .compareTo(bienss.get(d).getDate().substring(6, 9))) == 0)) {
                         }
                         Collections.swap(bienss, c, d);
                     }
@@ -143,16 +150,16 @@ public class Agence {
                         if (((bienss.get(c).getDate().substring(3, 5)
                                 .compareTo(bienss.get(d).getDate().substring(3, 5))) > 0)
                                 && ((bienss.get(c).getDate().substring(6, 9)
-                                        .compareTo(bienss.get(d).getDate().substring(6, 9))) == 0)) {
+                                .compareTo(bienss.get(d).getDate().substring(6, 9))) == 0)) {
                             Collections.swap(bienss, c, d);
                         }
 
                         if (((bienss.get(c).getDate().substring(0, 2)
                                 .compareTo(bienss.get(d).getDate().substring(0, 2))) > 0)
                                 && ((bienss.get(c).getDate().substring(3, 5)
-                                        .compareTo(bienss.get(d).getDate().substring(3, 5))) == 0)
+                                .compareTo(bienss.get(d).getDate().substring(3, 5))) == 0)
                                 && ((bienss.get(c).getDate().substring(6, 9)
-                                        .compareTo(bienss.get(d).getDate().substring(6, 9))) == 0)) {
+                                .compareTo(bienss.get(d).getDate().substring(6, 9))) == 0)) {
                         }
                         Collections.swap(bienss, c, d);
                     }
@@ -166,35 +173,48 @@ public class Agence {
 
     public void recherche(List<String> wilayas ,Transaction trans , double minPrix , double maxPrix , double minSup , double maxSup ) {
         bienAffiche.clear();
-            for (Bien bien : bienss) {
-                for (String m : wilayas) {
-                    if (!bien.getArchive()) {
-                        if (bien.getWilaya().getName().equals(m)) {
-                            bienAffiche.add(bien);
-                        }
+        bienss1.clear();
+        bienss2.clear();
+        bienss3.clear();
+
+        for (Bien bien : bienss) {
+            for (String m : wilayas) {
+                if (!bien.getArchive()) {
+                    if (bien.getWilaya().getName().equals(m)) {
+                        bienss1.add(bien);
                     }
                 }
             }
-            System.out.println(getBien());
-        for (int i = 0; i < bienAffiche.size(); i++) {
-                    if (bienAffiche.get(i).getTransaction() != trans) {
-                        this.bienAffiche.remove(bienAffiche.get(i));
-                    }
+        }
+
+
+        for (Bien bien1 : bienss1) {
+
+
+            if (bien1.getTransaction()==trans) {
+                bienAffiche.add(bien1);
+            }
+
+
+        }
+
+        for (Bien b : bienss2) {
+            if (b.calculeprix() > minPrix) {
+                if (b.calculeprix() < maxPrix) {
+                    bienss3.add(b);
                 }
-        System.out.println(getBien());
-        for (Bien b : bienss) {
-            if (b.getPrix() < minPrix) {
-                bienAffiche.remove(b);
             }
-            if (b.getPrix() > maxPrix) {
-                bienAffiche.remove(b);
+
+        }
+        for (Bien bb : bienss3) {
+            if (bb.getSuperficie() > minSup) {
+
+
+                if (bb.getSuperficie() < maxSup) {
+                    bienAffiche.add(bb);
+                }
             }
-            if (b.getSuperficie() < minSup) {
-                bienAffiche.remove(b);
-            }
-            if (b.getSuperficie() > maxSup) {
-                bienAffiche.remove(b);
-            }
+
         }
 
     }
